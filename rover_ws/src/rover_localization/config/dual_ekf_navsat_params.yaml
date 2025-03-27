@@ -1,16 +1,8 @@
-# Modified from the GPS demo - Nelson Durrant, Feb 2025
+# Modified from the GPS demo - Nelson Durrant, Feb 2025 
 
 # IMPORTANT! We're just using the built-in ZED localization package for now to manage the map->odom and
 # odom->base_link transformations. It consistently performed better than this custom dual-EKF implementation
 # using the robot_localization package in testing. We'll leave this here for future reference.
-
-imu_filter_madgwick:
-  ros__parameters:
-    use_mag: True
-    use_magnetic_field_msg: True
-    world_frame: 'enu' # to match robot_localization
-    publish_tf: False
-    publish_debug_topics: True
 
 ekf_filter_node_odom:
   ros__parameters:
