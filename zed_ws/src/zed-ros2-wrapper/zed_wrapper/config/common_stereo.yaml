@@ -107,6 +107,7 @@
             gnss_fix_topic: '/gps/fix' # Name of the GNSS topic of type NavSatFix to subscribe [Default: '/gps/fix']
             # Changed the below - Nelson Durrant, Mar 2025
             gnss_zero_altitude: true # Set to `true` to ignore GNSS altitude information
+            # TODO: Look at the below?
             h_covariance_mul: 1.0 # Multiplier factor to be applied to horizontal covariance of the received fix (plane X/Y)
             v_covariance_mul: 1.0 # Multiplier factor to be applied to vertical covariance of the received fix (Z axis)
             publish_utm_tf: true # Publish `utm` -> `map` TF
