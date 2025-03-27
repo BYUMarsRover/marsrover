@@ -79,21 +79,6 @@ def generate_launch_description():
             #     output="screen",
             #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
             #     remappings=[
-            #         ("imu/data", "zed/zed_node/imu/data"),
-            #         ("gps/fix", "gps/fix"),
-            #         ("gps/filtered", "gps/filtered"),
-            #         ("odometry/gps", "odometry/gps"),
-            #         ("odometry/filtered", "odometry/global"),
-            #     ],
-            #     condition=UnlessCondition(use_sim_time),
-            # ),
-            # launch_ros.actions.Node(
-            #     package="robot_localization",
-            #     executable="navsat_transform_node",
-            #     name="navsat_transform",
-            #     output="screen",
-            #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
-            #     remappings=[
             #         ("imu/data", "imu/data"),
             #         ("gps/fix", "gps/fix"),
             #         ("gps/filtered", "gps/filtered"),
