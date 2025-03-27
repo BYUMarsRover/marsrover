@@ -28,12 +28,17 @@ class PVT2NSF(Node):
         h_var = msg.h_acc**2  # horizontal covariance
         v_var = msg.v_acc**2  # vertical covariance
 
+        self.get_logger().info('horizontal accuracy: %s' % msg.h_acc)
+        self.get_logger().info('vertical accuracy: %s' % msg.v_acc)
+
         # Create covariance matrix
         pos_covariance = [
             h_var, 0, 0,
             0, h_var, 0,
             0, 0, v_var,
         ]
+
+        self.get_logger().info('covariance: %s' % pos_covariance)
 
         # Creates navsat message
         nsf_msg = NavSatFix(
