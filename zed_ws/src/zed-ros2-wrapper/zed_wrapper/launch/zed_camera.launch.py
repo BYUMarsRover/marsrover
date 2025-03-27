@@ -376,7 +376,8 @@ def generate_launch_description():
                 choices=['true', 'false']),
             DeclareLaunchArgument(
                 'gnss_antenna_offset',
-                default_value='[]',
+                # Added the below as a default value - Nelson Durrant, Mar 2025
+                default_value='[-0.45,-0.45.0.0]',
                 description='Position of the GNSS antenna with respect to the mounting point of the ZED camera. Format: [x,y,z]'),
             DeclareLaunchArgument(
                 'use_sim_time',
