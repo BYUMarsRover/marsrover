@@ -68,6 +68,6 @@ def generate_launch_description():
     ld.add_action(declare_use_sim_time_cmd)
     ld.add_action(start_robot_state_publisher_cmd)
     ld.add_action(sim_start_robot_state_publisher_cmd)
-    ld.add_action(zed_lidar_calibrate_cmd)
+    # ld.add_action(zed_lidar_calibrate_cmd)
 
     return ld
