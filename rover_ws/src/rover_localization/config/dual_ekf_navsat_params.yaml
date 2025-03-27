@@ -1,4 +1,4 @@
-# Modified from the GPS demo - Nelson Durrant, Feb 2025 
+# Modified from the GPS demo - Nelson Durrant, Feb 2025
 
 # IMPORTANT! We're just using the built-in ZED localization package for now to manage the map->odom and
 # odom->base_link transformations. It consistently performed better than this custom dual-EKF implementation
