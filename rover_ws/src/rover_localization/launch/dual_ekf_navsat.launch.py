@@ -45,15 +45,6 @@ def generate_launch_description():
             #     remappings=[("odometry/filtered", "odometry/local")],
             #     condition=UnlessCondition(use_sim_time),
             # ),
-            # launch_ros.actions.Node(
-            #     package="robot_localization",
-            #     executable="ekf_node",
-            #     name="ekf_filter_node_odom",
-            #     output="screen",
-            #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
-            #     remappings=[("odometry/filtered", "odometry/local")],
-            #     condition=UnlessCondition(use_sim_time),
-            # ),
             launch_ros.actions.Node(
                 package="robot_localization",
                 executable="ekf_node",
@@ -63,6 +54,15 @@ def generate_launch_description():
                 remappings=[("odometry/filtered", "odometry/local")],
                 condition=IfCondition(use_sim_time),
             ),
+            # launch_ros.actions.Node(
+            #     package="robot_localization",
+            #     executable="ekf_node",
+            #     name="ekf_filter_node_map",
+            #     output="screen",
+            #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
+            #     remappings=[("odometry/filtered", "odometry/global")],
+            #     condition=UnlessCondition(use_sim_time),
+            # ),
             # launch_ros.actions.Node(
             #     package="robot_localization",
             #     executable="ekf_node",
@@ -88,7 +88,7 @@ def generate_launch_description():
             #     output="screen",
             #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
             #     remappings=[
-            #         ("imu/data", "imu/data"),
+            #         ("imu/data", "zed/zed_node/imu/data"),
             #         ("gps/fix", "gps/fix"),
             #         ("gps/filtered", "gps/filtered"),
             #         ("odometry/gps", "odometry/gps"),
