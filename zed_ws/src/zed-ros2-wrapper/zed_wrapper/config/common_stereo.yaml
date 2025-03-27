@@ -77,15 +77,12 @@
             pos_tracking_enabled: true # True to enable positional tracking from start
             pos_tracking_mode: 'GEN_1' # Matches the ZED SDK setting: 'GEN_1', 'GEN_2'
             imu_fusion: true # enable/disable IMU fusion. When set to false, only the optical odometry will be used.
-            # Changed the below - Nelson Durrant, Mar 2025
-            publish_tf: false # [usually overwritten by launch file] publish `odom -> camera_link` TF
-            # Changed the below - Nelson Durrant, Mar 2025
-            publish_map_tf: false # [usually overwritten by launch file] publish `map -> odom` TF
+            publish_tf: true # [usually overwritten by launch file] publish `odom -> camera_link` TF
+            publish_map_tf: true # [usually overwritten by launch file] publish `map -> odom` TF
             map_frame: 'map'
             odometry_frame: 'odom'
             area_memory_db_path: ''
-            # Changed the below - Nelson Durrant, Mar 2025
-            area_memory: false # Enable to detect loop closure
+            area_memory: true # Enable to detect loop closure
             reset_odom_with_loop_closure: true # Re-initialize odometry to the last valid pose when loop closure happens (reset camera odometry drift)
             depth_min_range: 0.0 # Set this value for removing fixed zones of the robot in the FoV of the camerafrom the visual odometry evaluation
             set_as_static: false # If 'true' the camera will be static and not move in the environment
@@ -104,9 +101,12 @@
             qos_depth: 5
             
         gnss_fusion:
-            gnss_fusion_enabled: false # fuse 'sensor_msg/NavSatFix' message information into pose data
-            gnss_fix_topic: '/fix' # Name of the GNSS topic of type NavSatFix to subscribe [Default: '/gps/fix']
-            gnss_zero_altitude: false # Set to `true` to ignore GNSS altitude information
+            # Changed the below - Nelson Durrant, Mar 2025
+            gnss_fusion_enabled: true # fuse 'sensor_msg/NavSatFix' message information into pose data
+            # Changed the below - Nelson Durrant, Mar 2025
+            gnss_fix_topic: '/gps/fix' # Name of the GNSS topic of type NavSatFix to subscribe [Default: '/gps/fix']
+            # Changed the below - Nelson Durrant, Mar 2025
+            gnss_zero_altitude: true # Set to `true` to ignore GNSS altitude information
             h_covariance_mul: 1.0 # Multiplier factor to be applied to horizontal covariance of the received fix (plane X/Y)
             v_covariance_mul: 1.0 # Multiplier factor to be applied to vertical covariance of the received fix (Z axis)
             publish_utm_tf: true # Publish `utm` -> `map` TF

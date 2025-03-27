@@ -10,6 +10,10 @@ import os
 import launch.actions
 from launch.conditions import UnlessCondition, IfCondition
 
+# IMPORTANT! We're just using the built-in ZED localization package for now to manage the map->odom and
+# odom->base_link transformations. It consistently performed better than this custom dual-EKF implementation
+# using the robot_localization package in testing. We'll leave the launch params here for future reference.
+
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration("use_sim_time")
@@ -32,15 +36,15 @@ def generate_launch_description():
             launch.actions.DeclareLaunchArgument(
                 "output_location", default_value="~/dual_ekf_navsat_example_debug.txt"
             ),
-            launch_ros.actions.Node(
-                package="robot_localization",
-                executable="ekf_node",
-                name="ekf_filter_node_odom",
-                output="screen",
-                parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
-                remappings=[("odometry/filtered", "odometry/local")],
-                condition=UnlessCondition(use_sim_time),
-            ),
+            # launch_ros.actions.Node(
+            #     package="robot_localization",
+            #     executable="ekf_node",
+            #     name="ekf_filter_node_odom",
+            #     output="screen",
+            #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
+            #     remappings=[("odometry/filtered", "odometry/local")],
+            #     condition=UnlessCondition(use_sim_time),
+            # ),
             launch_ros.actions.Node(
                 package="robot_localization",
                 executable="ekf_node",
@@ -50,15 +54,15 @@ def generate_launch_description():
                 remappings=[("odometry/filtered", "odometry/local")],
                 condition=IfCondition(use_sim_time),
             ),
-            launch_ros.actions.Node(
-                package="robot_localization",
-                executable="ekf_node",
-                name="ekf_filter_node_map",
-                output="screen",
-                parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
-                remappings=[("odometry/filtered", "odometry/global")],
-                condition=UnlessCondition(use_sim_time),
-            ),
+            # launch_ros.actions.Node(
+            #     package="robot_localization",
+            #     executable="ekf_node",
+            #     name="ekf_filter_node_map",
+            #     output="screen",
+            #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
+            #     remappings=[("odometry/filtered", "odometry/global")],
+            #     condition=UnlessCondition(use_sim_time),
+            # ),
             launch_ros.actions.Node(
                 package="robot_localization",
                 executable="ekf_node",
@@ -68,21 +72,21 @@ def generate_launch_description():
                 remappings=[("odometry/filtered", "odometry/global")],
                 condition=IfCondition(use_sim_time),
             ),
-            launch_ros.actions.Node(
-                package="robot_localization",
-                executable="navsat_transform_node",
-                name="navsat_transform",
-                output="screen",
-                parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
-                remappings=[
-                    ("imu/data", "imu/data"),
-                    ("gps/fix", "gps/fix"),
-                    ("gps/filtered", "gps/filtered"),
-                    ("odometry/gps", "odometry/gps"),
-                    ("odometry/filtered", "odometry/global"),
-                ],
-                condition=UnlessCondition(use_sim_time),
-            ),
+            # launch_ros.actions.Node(
+            #     package="robot_localization",
+            #     executable="navsat_transform_node",
+            #     name="navsat_transform",
+            #     output="screen",
+            #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
+            #     remappings=[
+            #         ("imu/data", "imu/data"),
+            #         ("gps/fix", "gps/fix"),
+            #         ("gps/filtered", "gps/filtered"),
+            #         ("odometry/gps", "odometry/gps"),
+            #         ("odometry/filtered", "odometry/global"),
+            #     ],
+            #     condition=UnlessCondition(use_sim_time),
+            # ),
             launch_ros.actions.Node(
                 package="robot_localization",
                 executable="navsat_transform_node",
@@ -113,17 +117,17 @@ def generate_launch_description():
                 condition=UnlessCondition(use_sim_time),
             ),
             # Added IMU and magnetometer filter node
-            launch_ros.actions.Node(
-                package='imu_filter_madgwick',
-                executable='imu_filter_madgwick_node',
-                name='imu_filter_madgwick',
-                output='screen',
-                remappings=[
-                    ('imu/data_raw', 'zed/zed_node/imu/data_raw'),
-                    ('imu/mag', 'zed/zed_node/imu/mag')
-                ],
-                parameters=[rl_params_file],
-                condition=UnlessCondition(use_sim_time),
-            ),
+            # launch_ros.actions.Node(
+            #     package='imu_filter_madgwick',
+            #     executable='imu_filter_madgwick_node',
+            #     name='imu_filter_madgwick',
+            #     output='screen',
+            #     remappings=[
+            #         ('imu/data_raw', 'zed/zed_node/imu/data_raw'),
+            #         ('imu/mag', 'zed/zed_node/imu/mag')
+            #     ],
+            #     parameters=[rl_params_file],
+            #     condition=UnlessCondition(use_sim_time),
+            # ),
         ]
     )
