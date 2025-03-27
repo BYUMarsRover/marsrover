@@ -370,7 +370,8 @@ def generate_launch_description():
                 description='Path to an input SVO file.'),
             DeclareLaunchArgument(
                 'enable_gnss',
-                default_value='false',
+                # Changed this value to default to true - Nelson Durrant, Mar 2025
+                default_value='true',
                 description='Enable GNSS fusion to fix positional tracking pose with GNSS data from messages of type `sensor_msgs::msg::NavSatFix`. The fix topic can be customized in `common_stereo.yaml`.',
                 choices=['true', 'false']),
             DeclareLaunchArgument(

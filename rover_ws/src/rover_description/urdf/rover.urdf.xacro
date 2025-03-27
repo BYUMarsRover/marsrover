@@ -75,9 +75,9 @@
   </link>
 
   <joint name="pole_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="pole_link"/>
-    <origin xyz="${base_length/2+pole_length/2} 0 ${pole_height/2-base_height/2}" rpy="0 0 0"/>
+    <parent link="pole_link"/>
+    <child link="base_link"/>
+    <origin xyz="${-base_length/2-pole_length/2} 0 ${-pole_height/2+base_height/2}" rpy="0 0 0"/>
   </joint>
 
   <!-- Sensors -->
@@ -111,12 +111,12 @@
   <!-- https://www.stereolabs.com/docs/ros2/140_ros2-robot-integration -->
 
   <joint name="zed_camera_joint" type="fixed">
-    <parent link="pole_link"/>
-    <child link="zed_camera_mount"/>
+    <parent link="zed_camera_link"/>
+    <child link="pole_link"/>
     <!-- the 'zed_lidar_calibrate' node handles the mount to sensor transform -->
-    <origin xyz="${pole_length/2+0.1} 0 0.05" rpy="0 0 0"/>
+    <origin xyz="${-pole_length/2-0.1} 0 -0.05" rpy="0 0 0"/>
   </joint>
 
-  <link name="zed_camera_mount"/>
+  <link name="zed_camera_link"/>
 
 </robot>
