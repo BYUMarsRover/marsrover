@@ -34,6 +34,9 @@ class PVT2NSF(Node):
         self.get_logger().info('horizontal accuracy: %s' % msg.h_acc)
         self.get_logger().info('vertical accuracy: %s' % msg.v_acc)
 
+        self.get_logger().info('horizontal accuracy: %s' % msg.h_acc)
+        self.get_logger().info('vertical accuracy: %s' % msg.v_acc)
+
         # Create covariance matrix
         pos_covariance = [
             h_var, 0, 0,
