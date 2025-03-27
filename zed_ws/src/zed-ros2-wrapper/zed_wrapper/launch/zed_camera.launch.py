@@ -347,14 +347,12 @@ def generate_launch_description():
                 choices=['true', 'false']),
             DeclareLaunchArgument(
                 'publish_tf',
-                # Changed default value to 'false' to avoid TF conflicts - Nelson Durrant, Mar 2025
-                default_value='false',
+                default_value='true',
                 description='Enable publication of the `odom -> camera_link` TF.',
                 choices=['true', 'false']),
             DeclareLaunchArgument(
                 'publish_map_tf',
-                # Changed default value to 'false' to avoid TF conflicts - Nelson Durrant, Mar 2025
-                default_value='false',
+                default_value='true',
                 description='Enable publication of the `map -> odom` TF. Note: Ignored if `publish_tf` is False.',
                 choices=['true', 'false']),
             DeclareLaunchArgument(
