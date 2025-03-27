@@ -79,7 +79,7 @@ def generate_launch_description():
             #     output="screen",
             #     parameters=[rl_params_file, {"use_sim_time": use_sim_time}],
             #     remappings=[
-            #         ("imu/data", "zed/zed_node/imu/data"),
+            #         ("imu/data", "imu/data"),
             #         ("gps/fix", "gps/fix"),
             #         ("gps/filtered", "gps/filtered"),
             #         ("odometry/gps", "odometry/gps"),
