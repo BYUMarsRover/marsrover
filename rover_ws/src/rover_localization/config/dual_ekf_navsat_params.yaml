@@ -1,4 +1,9 @@
 # Modified from the GPS demo - Nelson Durrant, Feb 2025 
+
+# IMPORTANT! We're just using the built-in ZED localization package for now to manage the map->odom and
+# odom->base_link transformations. It consistently performed better than this custom dual-EKF implementation
+# using the robot_localization package in testing. We'll leave this here for future reference.
+
 ekf_filter_node_odom:
   ros__parameters:
     frequency: 20.0
